@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Data files (DO NOT upload data to GitHub)
+data/raw/*.csv
+data/processed/
+data/exports/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/*.log
+
+# Environment
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keep directory structure but ignore contents
+data/raw/.gitkeep
+data/processed/.gitkeep
+data/exports/.gitkeep

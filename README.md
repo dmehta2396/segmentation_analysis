@@ -1,57 +1,172 @@
 # Segmentation Analysis Dashboard
 
-Comprehensive customer segmentation analysis with movement tracking, revenue analysis, and risk scoring.
+![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
 
-## Quick Start
+Advanced customer segmentation analysis system with interactive dashboard, product analysis, cohort tracking, and risk scoring.
 
-1. Install dependencies:
+## 🚀 Features
+
+- **Interactive Dashboard**: 5-tab interface with real-time analysis
+- **Segment Movement Analysis**: Track customer migrations between segments
+- **Product Revenue Analysis**: Product mix and segment-product matrices
+- **Cohort Analysis**: Retention rates and revenue tracking by cohort
+- **Risk Scoring**: Entity and segment churn risk assessment
+- **Entity Search**: Individual customer journey tracking
+- **Excel Export**: Comprehensive reports with multiple worksheets
+- **Batch Processing**: Automated analysis for multiple time periods
+
+## 📊 Screenshots
+
+### Overview Dashboard
+![Overview](docs/screenshots/overview.png)
+
+### Risk Dashboard
+![Risk](docs/screenshots/risk.png)
+
+## 🛠️ Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- pip package manager
+
+### Setup
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/YOUR_USERNAME/segmentation-analysis-dashboard.git
+cd segmentation-analysis-dashboard
+```
+
+2. **Create virtual environment**
+```bash
+python -m venv venv
+venv\Scripts\activate  # Windows
+source venv/bin/activate  # Mac/Linux
+```
+
+3. **Install dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Place your data files in `data/raw/`:
-   - `base_seg.csv`
-   - `curr_seg_YYYYMM.csv` (one per month)
-   - `rev_glbl.csv`
+4. **Prepare data**
 
-3. Validate data:
+Place your CSV files in `data/raw/`:
+- `base_seg.csv` - Base segmentation
+- `curr_seg_YYYYMM.csv` - Current segmentation (one per month)
+- `rev_glbl.csv` - Revenue metrics
+
+Or generate dummy data:
+```bash
+python scripts/generate_dummy_data.py
+```
+
+5. **Validate data**
 ```bash
 python scripts/validate_data.py
 ```
 
-4. Run dashboard:
+6. **Run dashboard**
 ```bash
 python dashboards/main_app.py
 ```
 
-5. Open browser: http://localhost:8050
+7. **Open browser**
+```
+http://localhost:8050
+```
 
-## Data Requirements
+## 📁 Project Structure
+```
+segmentation_analysis/
+├── data/               # Data files
+├── src/               # Source code
+│   ├── analysis/      # Analysis functions
+│   ├── data/          # Data loading & processing
+│   ├── visualization/ # Charts & visualizations
+│   └── utils/         # Utilities
+├── dashboards/        # Dashboard application
+│   ├── callbacks/     # Dash callbacks
+│   └── layouts/       # UI layouts
+└── scripts/           # Utility scripts
+```
 
-### base_seg.csv
-- glbl_enti_nbr (entity ID)
-- segmentation_mnth (YYYYMM format)
-- dmnt_seg_cd (segment code)
+## 📝 Data Requirements
 
-### curr_seg_YYYYMM.csv
-- Same columns as base_seg.csv
-- Create one file per comparison month
+### File: `base_seg.csv`
+```csv
+glbl_enti_nbr,segmentation_mnth,dmnt_seg_cd
+ENTITY001,202406,SEG01
+```
 
-### rev_glbl.csv
-- glbl_enti_nbr (entity ID)
-- shp_dt_yyyymm (YYYYMM format)
-- Product metric columns (auto-detected)
+### File: `curr_seg_YYYYMM.csv`
+```csv
+glbl_enti_nbr,segmentation_mnth,dmnt_seg_cd
+ENTITY001,202411,SEG02
+```
 
-## Configuration
+### File: `rev_glbl.csv`
+```csv
+shp_dt_yyyymm,glbl_enti_nbr,PROD_A_rev_wf,PROD_A_vol_wf,...
+202305,ENTITY001,15000.50,150.5,...
+```
 
-Edit column names in `src/config/settings.py` if your columns are named differently.
+**Note:** Column names can be customized in `src/config/settings.py`
 
-## Features
+## 🔧 Configuration
 
-- Segment movement analysis
-- Product revenue analysis
-- Cohort analysis
-- Risk scoring
-- Entity search
-- Excel export
-- Batch processing
+Edit `src/config/settings.py` to match your column names:
+```python
+SEGMENT_COLS = {
+    'entity': 'your_entity_column',
+    'month': 'your_month_column',
+    'segment': 'your_segment_column'
+}
+```
+
+## 📈 Usage
+
+### Interactive Dashboard
+1. Select comparison month
+2. Click "Generate Analysis"
+3. Navigate through tabs:
+   - Overview
+   - Product Analysis
+   - Cohort Analysis
+   - Risk Dashboard
+   - Entity Search
+
+### Export Reports
+- Click "Export to Excel" for comprehensive analysis
+- Click "Generate Risk Report" for risk assessment
+
+### Batch Processing
+```bash
+python scripts/run_batch_analysis.py
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👤 Author
+
+**Your Name**
+- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)
+
+## 🙏 Acknowledgments
+
+- Built with [Dash](https://plotly.com/dash/) by Plotly
+- Visualizations powered by [Plotly](https://plotly.com/)
+- UI components from [Dash Bootstrap Components](https://dash-bootstrap-components.opensource.faculty.ai/)
+
+## 📮 Contact
+
+For questions or feedback, please [open an issue](https://github.com/YOUR_USERNAME/segmentation-analysis-dashboard/issues).
